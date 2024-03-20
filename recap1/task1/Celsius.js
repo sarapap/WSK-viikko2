@@ -1,6 +1,6 @@
 'use strict';
 
-const temp = prompt('Enter a temperature in Celsius.');
+const temp = parseFloat(prompt('Enter a temperature in Celsius.'));
 const convertedF = temp * (9/5) + 32;
 const convertedK = temp + 274.15;
 
