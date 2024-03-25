@@ -779,10 +779,11 @@ navigator.geolocation.getCurrentPosition(function (position) {
   console.log("Käyttäjän sijainti: " + userLocation.latitude + ", " + userLocation.longitude);
 
   function calculateDistance(userLocation, location) {
-    const x = userLocation.latitude - location.latitude;
-    const y = userLocation.longitude - location.longitude;
+    const x = userLocation.latitude - location.coordinates[1];
+    const y = userLocation.longitude - location.coordinates[0];
     return Math.sqrt(x ** 2 + y ** 2);
   }
+
 
   const sortedRestaurants = restaurants.slice().sort((a, b) => {
     const distanceA = calculateDistance(userLocation, a.location);

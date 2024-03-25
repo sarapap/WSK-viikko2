@@ -770,26 +770,17 @@ const restaurants = [
   },
 ];
 
-function success(pos) {
-  const crd = pos.coords;
+const map = L.map('map').setView([60.2826627, 25.0101836], 13);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+}).addTo(map);
 
-  const map = L.map('map').setView([crd.latitude, crd.longitude], 13);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-  }).addTo(map);
+restaurants.forEach(restaurant => {
+  const marker = L.marker([restaurant.location.coordinates[1], restaurant.location.coordinates[0]]).addTo(map);
 
-  L.marker([restaurants.location.latitude, restaurants.location.longitude]).addTo(map)
-    .bindPopup(`<h3>${restaurants.name}</h3><p>${restaurants.address}</p>`)
-    .openPopup();
-}
-
-// Function to be called if an error occurs while retrieving location information
-function error(err) {
-  console.warn(`ERROR(${err.code}): ${err.message}`);
-}
-
-// Starts the location search
-navigator.geolocation.getCurrentPosition(success, error);
+  marker.bindPopup(`<h3>${restaurant.name}</h3><p>${restaurant.address}</p>`);
+  marker.openPopup();
+});
 
 
 
