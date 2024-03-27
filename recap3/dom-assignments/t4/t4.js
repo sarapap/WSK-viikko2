@@ -796,13 +796,13 @@ navigator.geolocation.getCurrentPosition(function (position) {
   sortedRestaurants.forEach(restaurant => {
     const row = document.createElement('tr');
 
-    const nameTH = document.createElement('td');
-    nameTH.innerHTML = restaurant.name;
-    row.appendChild(nameTH);
+    const nameTD = document.createElement('td');
+    nameTD.innerHTML = restaurant.name;
+    row.appendChild(nameTD);
 
-    const addressTH = document.createElement('td');
-    addressTH.innerHTML = restaurant.address;
-    row.appendChild(addressTH);
+    const addressTD = document.createElement('td');
+    addressTD.innerHTML = restaurant.address;
+    row.appendChild(addressTD);
 
     table.appendChild(row);
     console.log(`Name: ${restaurant.name}, Address: ${restaurant.address}`);

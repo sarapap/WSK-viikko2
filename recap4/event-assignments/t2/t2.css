@@ -27,10 +27,19 @@ td {
 }
 
 .highlight {
-  background-color: lightskyblue;
+  background-color: rgb(179, 204, 219);
   font-weight: bold;
 }
 
 dialog {
   width: 400px;
+  background-color: rgb(179, 204, 219);
+  box-shadow: 12px 9px 0px black;
+}
+
+button {
+  background-color: black;
+  border: white;
+  color: white;
+  float: right;
 }

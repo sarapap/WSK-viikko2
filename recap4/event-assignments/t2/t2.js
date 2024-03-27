@@ -774,8 +774,6 @@ restaurants.sort((a, b) => {
   return a.name.localeCompare(b.name);
 });
 
-const table = document.querySelector('table');
-
 function openModal(restaurant) {
   const modal = document.querySelector('dialog');
   const modalContent = document.createElement('div');
@@ -819,27 +817,29 @@ function openModal(restaurant) {
 
 }
 
+const table = document.querySelector('table');
+
 restaurants.forEach(restaurant => {
   const row = document.createElement('tr');
 
-  const nameTH = document.createElement('td');
-  nameTH.innerHTML = restaurant.name;
+  const nameTD = document.createElement('td');
+  nameTD.innerHTML = restaurant.name;
 
-  nameTH.addEventListener('click', () => {
+  nameTD.addEventListener('click', () => {
     document.querySelectorAll('td').forEach(item => {
       item.classList.remove('highlight');
     });
 
-    nameTH.classList.add('highlight');
+    nameTD.classList.add('highlight');
 
     openModal(restaurant);
   });
 
-  row.appendChild(nameTH);
+  row.appendChild(nameTD);
 
-  const addressTH = document.createElement('td');
-  addressTH.innerHTML = restaurant.address;
-  row.appendChild(addressTH);
+  const addressTD = document.createElement('td');
+  addressTD.innerHTML = restaurant.address;
+  row.appendChild(addressTD);
 
   table.appendChild(row);
 });
