@@ -14,19 +14,17 @@ async function getAPI() {
     }
 }
 
-async function getMenu(restaurantID, language) {
+async function getMenu(restaurantID) {
     try {
-        const response = await fetch(`https://10.120.32.94/restaurant/api/v1/restaurants/daily/:${restaurantID}/:${language}`);
+        const response = await fetch(`https://10.120.32.94/restaurant/api/v1/restaurants/daily/${restaurantID}/fi`);
         if (!response.ok) {
             throw new Error('Failed to fetch menu data');
         }
         const menu = await response.json();
-        console.log(menu);
         return menu;
     } catch (error) {
         console.error('Error fetching menu data:', error);
         alert('Failed to fetch menu data. Please try again later.');
-        return [];
     }
 }
 
@@ -44,8 +42,8 @@ function displayRestaurants(restaurants) {
             });
 
             nameTD.classList.add('highlight');
-            /*const menu = await getMenu(restaurant.id, 'fi');*/
-            openModal(restaurant)
+            const menu = await getMenu(restaurant._id);
+            openModal(restaurant, menu)
         });
 
         row.appendChild(nameTD);
@@ -93,20 +91,19 @@ function openModal(restaurant, menu) {
     const company = document.createElement('p');
     company.textContent = restaurant.company;
     modalContent.appendChild(company);
+    console.log('Menu:', menu);
 
-    /* if (menu.length > 0) {
-         const menuHeading = document.createElement('h3');
-         menuHeading.textContent = 'Menu';
-         modalContent.appendChild(menuHeading);
- 
-         const menuList = document.createElement('ul');
-         menu.forEach(course => {
-             const menuItem = document.createElement('li');
-             menuItem.textContent = `${course.name}: ${course.price}`;
-             menuList.appendChild(menuItem);
-         });
-         modalContent.appendChild(menuList);
-     }*/
+    const menuHeading = document.createElement('h3');
+    menuHeading.textContent = 'Menu';
+    modalContent.appendChild(menuHeading);
+
+    const menuList = document.createElement('ul');
+    menu.courses.forEach(course => {
+        const menuItem = document.createElement('li');
+        menuItem.textContent = `${course.name}: ${course.price} ${course.diets}`;
+        menuList.appendChild(menuItem);
+    });
+    modalContent.appendChild(menuList);
 
     modal.innerHTML = '';
     modal.appendChild(modalContent);

@@ -844,3 +844,4 @@ restaurants.forEach(restaurant => {
   table.appendChild(row);
 });
 
+
