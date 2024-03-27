@@ -20,12 +20,6 @@ th {
     text-align: left;
 }
 
-td {
-    border-bottom: 1px solid #ccc;
-    padding: 0.5em 1em;
-    cursor: pointer;
-}
-
 .highlight {
     background-color: rgb(179, 204, 219);
     font-weight: bold;
@@ -34,4 +28,12 @@ td {
 dialog {
     width: 400px;
     background-color: rgb(179, 204, 219);
+    box-shadow: 12px 9px 0px black;
+}
+
+button {
+    background-color: black;
+    border: white;
+    color: white;
+    float: right;
 }
